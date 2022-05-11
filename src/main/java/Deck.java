@@ -52,6 +52,10 @@ public class Deck {
                 unshuffledDeck.add(cardNo);
             }
         }
+        allCards.get(0).setValue(14);
+        allCards.get(13).setValue(14);
+        allCards.get(26).setValue(14);
+        allCards.get(39).setValue(14);
     }
 
     /**
@@ -61,7 +65,7 @@ public class Deck {
      */
     public static void printDeck(ArrayList<Integer> shuffledDeck){
         for (Integer integer : shuffledDeck) {
-            System.out.print(allCards.get(integer - 1).suit + " " + allCards.get(integer - 1).value + "\n");
+            System.out.print(allCards.get(integer - 1).toString() + "\n");
         }
     }
 
