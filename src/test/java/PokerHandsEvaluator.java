@@ -17,6 +17,6 @@ public class PokerHandsEvaluator {
         onePairHand[2]=thirdCard;
         onePairHand[3]=forthCard;
         onePairHand[4]=fifthCard;
-        assertEquals(true, PokerHand.checkPair(onePairHand));
+        assertEquals("One pair", PokerHand.checkHand(onePairHand));
     }
 }

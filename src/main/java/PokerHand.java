@@ -3,40 +3,37 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PokerHand implements Comparator<Card>{
+public class PokerHand {
 
-    public static String checkPair(Card[] hand) {
+    public static String checkHand(Card[] hand) {
+        String sameCardGroupOneFacevalue = "", sameCardGroupTwoFacevalue = "";
+        int sameCardGroupOne = 0, sameCardGroupTwo = 0;
 
-        getHandData(hand);
+        Map<String, Integer> handValues = getHandData(hand);
 
-        Arrays.sort(hand, new Comparator<Card>() {
-            @Override
-            public int compare(Card card1, Card card2) {
-                return Math.max(card1.value, card2.value);
-            }
-        });
-
-
-
-
-
-        for(int index=0; index<hand.length; index++){
-            int firstCardValue = hand[index].value;
-            int cardsOfTheSameValue = 1;
-            for(int index2=index+1; index2<hand.length; index2++){
-                int nextCardValue = hand[index2].value;
-                //System.out.println("Values to compare: "+firstCardValue+" "+nextCardValue);
-                if(firstCardValue==nextCardValue){
-                    //System.out.println("Match!");
-                    cardsOfTheSameValue++;
+        for(String key:handValues.keySet()){
+            int cardsWithSameValue = handValues.get(key);
+            if(cardsWithSameValue>=2){
+                if(sameCardGroupOne==0){
+                    sameCardGroupOne=cardsWithSameValue;
+                    sameCardGroupOneFacevalue=key;
+                    System.out.println(sameCardGroupOne+" "+sameCardGroupOneFacevalue);
+                }
+                else{
+                    sameCardGroupTwo=cardsWithSameValue;
+                    sameCardGroupTwoFacevalue=key;
+                    System.out.println(sameCardGroupTwo+" "+sameCardGroupTwoFacevalue);
                 }
             }
-            System.out.println("Iteration "+(index+1)+": "+cardsOfTheSameValue+" "+firstCardValue);
+        }
+
+        if(sameCardGroupOne==2 && sameCardGroupTwo==0){
+            return "One pair";
         }
         return "Poker hand";
     }
 
-    private static void getHandData(Card[] hand) {
+    private static Map<String, Integer> getHandData(Card[] hand) {
         Map<String, Integer> handValues = new HashMap<>();
         handValues.put("TWO",0);
         handValues.put("THREE",0);
@@ -55,17 +52,7 @@ public class PokerHand implements Comparator<Card>{
         for(Card card:hand){
             handValues.put(card.getFaceValue(),handValues.get(card.getFaceValue())+1);
         }
-
-        for(String key:handValues.keySet()){
-            int value = handValues.get(key);
-            System.out.println(key+" "+value);
-        }
-
-    }
-
-    @Override
-    public int compare(Card card1, Card card2) {
-        return Math.max(card1.value, card2.value);
+        return handValues;
     }
 
 }
