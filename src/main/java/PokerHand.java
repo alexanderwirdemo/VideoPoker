@@ -6,7 +6,7 @@ import java.util.Map;
 public class PokerHand {
 
     public static String checkHand(Card[] hand) {
-        String sameCardGroupOneFacevalue = "", sameCardGroupTwoFacevalue = "";
+        String sameCardGroupOneFacevalue, sameCardGroupTwoFacevalue;
         int sameCardGroupOne = 0, sameCardGroupTwo = 0;
 
         Map<String, Integer> handValues = getHandData(hand);
@@ -29,6 +29,9 @@ public class PokerHand {
 
         if(sameCardGroupOne==2 && sameCardGroupTwo==0){
             return "One pair";
+        }
+        if(sameCardGroupOne==2 && sameCardGroupTwo==2){
+            return "Two pair";
         }
         return "Poker hand";
     }
