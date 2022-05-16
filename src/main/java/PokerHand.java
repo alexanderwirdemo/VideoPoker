@@ -31,7 +31,10 @@ public class PokerHand {
             return "One pair";
         }
         if(sameCardGroupOne==2 && sameCardGroupTwo==2){
-            return "Two pair";
+            return "Two pairs";
+        }
+        if(sameCardGroupOne==3 && sameCardGroupTwo==0){
+            return "Three of a kind";
         }
         return "Poker hand";
     }
