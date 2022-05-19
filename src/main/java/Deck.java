@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+
+
 
 public class Deck {
     // Constants
@@ -9,6 +12,7 @@ public class Deck {
     static ArrayList<Card> allCards=new ArrayList<>(); // This variable represents all cards
     static ArrayList<Integer> unshuffledDeck = new ArrayList<>(); // This variable holds the representation of all cards, unshuffeled
     static ArrayList<Integer> shuffledDeck = new ArrayList<>(); // This variable holds the representation of all cards, shuffeled
+    static ArrayList<Integer> playerHand=new ArrayList<>(); // RamaBito: Player Hand cards.
     static Random random = new Random();
 
     /**
@@ -23,6 +27,19 @@ public class Deck {
         shuffledDeck = shuffleDeck(unshuffledDeck);
         System.out.println();
         printDeck(shuffledDeck);
+         System.out.println();
+         
+         
+         /** Creation of player hand**/
+        System.out.println("*************************************************************");
+        playerHand=creationOfPlayerHand();
+	printDeck(playerHand);
+        
+         System.out.println("*************************************************************");
+         switchOfPlayerHand();
+         printDeck(playerHand);
+        
+		
     }
 
     /**
@@ -83,4 +100,69 @@ public class Deck {
         }
         return shuffledDeck;
     }
+	
+    
+    /** 
+     * @author: Rama Bito
+     * @description API used to create the player hand randomly through randomizing 5 times and remove the output card from the shuffled deck
+     * @return Array list the player hand.
+     **/
+	public static ArrayList<Integer> creationOfPlayerHand()
+	{
+		ArrayList<Integer> temp=new ArrayList<>();
+		for(int i=0;i<5;i++)
+		{
+			int randomCard = random.nextInt(shuffledDeck.size());
+			temp.add(shuffledDeck.get(randomCard));
+			shuffledDeck.remove(randomCard);
+		}
+		return temp;
+	}
+        
+     /** 
+       * @author: Rama Bito
+       * @description API used to make the user replace the cards he want to replace through inertacting with him
+       **/
+	public static void switchOfPlayerHand()
+	{
+            int hold=0, replace=0, cardNo=0;
+            boolean wrongInput=true;
+            Scanner scan = new Scanner(System.in);
+            ArrayList<Integer> temp=new ArrayList<>();
+            
+            
+            /* the the number of the cards the user want to replace */
+            System.out.println("Enter the number of cards you want to replace: ");
+            while(wrongInput == true)
+            {
+                 try{
+                    replace=scan.nextInt();
+                    if(replace >= 1 && replace <=5)
+                            wrongInput=false;
+                    else
+                             System.out.print("Enter the number of cards you want to replace from 1 to 5 card: ");
+                    }
+                    catch(Exception e){
+                             System.out.print("Wrong Input, Please enter a number between 1 and 5: ");
+                      }
+            
+            }
+            
+            /* take the IDs of the cards the user want to replace */
+            for(int i=0;i<replace;i++)
+            { 
+                System.out.println("Enter the card Id you want to replace (1-5): ");
+                cardNo=scan.nextInt();
+                shuffledDeck.add(playerHand.get(cardNo-1));
+                playerHand.remove(cardNo-1);
+                int randomCard = random.nextInt(shuffledDeck.size());
+                playerHand.add( cardNo-1, shuffledDeck.get(randomCard));
+		shuffledDeck.remove(randomCard);
+                
+                
+            }
+	}
+	
+		
+		
 }
