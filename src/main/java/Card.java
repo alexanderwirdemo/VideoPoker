@@ -60,6 +60,10 @@ public class Card implements Comparable<Card>{
         this.value = value;
     }
 
+    public Suits getSuit() {
+        return suit;
+    }
+
     public String getFaceValue() {
         return faceValue;
     }

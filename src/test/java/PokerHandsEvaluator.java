@@ -88,7 +88,7 @@ public class PokerHandsEvaluator {
         Card secondCard = new Card(3, Suits.CLOVES, 3);
         Card thirdCard = new Card(4, Suits.CLOVES, 4);
         Card forthCard = new Card(6, Suits.CLOVES, 6);
-        Card fifthCard = new Card(13, Suits.SPADES, 13);
+        Card fifthCard = new Card(13, Suits.CLOVES, 13);
         Card oddCard = new Card(25, Suits.DIAMONDS, 12);
         Card[] flushHand = new Card[5];
         flushHand[0]=firstCard;
