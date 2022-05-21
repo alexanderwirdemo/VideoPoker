@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +50,34 @@ public class PokerHand {
         if(sameCardGroupOne==3 && sameCardGroupTwo==0){
             return "Three of a kind";
         }
+        // If there are no groups, the hand could possibly be a straight
+        if(sameCardGroupOne == 0){
+            if(checkStraight(hand)){
+                return "Straight";
+            }
+        }
         return "Poker hand";
+    }
+
+    /**
+     * @description This function evaluates if the player's poker hand is a straight by checking the difference in value from one card to the next
+     * @test PokerHandEvaluator: straight() (indirectly)
+     * @param hand, an Array of five (5) Card objects
+     * @return boolean (if the hand is a straight - true, otherwise false)
+     */
+    private static boolean checkStraight(Card[] hand) {
+        // First off, the hand is sorted by value
+        Arrays.sort(hand);
+        // Then, the hand is ran through; the card is evaluated vs the following card. The difference must be exactly one (1)
+        for(int index=0; index<hand.length; index++){
+            // First four cards are evaluated against the following
+            if(index<hand.length-1){
+                if(hand[index+1].getValue()-hand[index].getValue()!=1){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -81,5 +109,4 @@ public class PokerHand {
         }
         return handValues;
     }
-
 }
