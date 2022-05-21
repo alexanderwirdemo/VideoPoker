@@ -2,7 +2,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PokerHand {
-
     /**
      * @description This function evaluates the player's poker hand and returns a String representation of the hand (e.g. "Two pairs", "Full house" etc)
      * @test PokerHandEvaluator: onePair(), twoPairs(), threeOfAKind()
@@ -11,7 +10,7 @@ public class PokerHand {
      */
     public static String checkHand(Card[] hand) {
         // Variables
-        String sameCardGroupOneFacevalue = "", sameCardGroupTwoFacevalue = ""; // These variables represents the face value of groups of card with the same value, e.g. Fours
+        String sameCardGroupOneFacevalue, sameCardGroupTwoFacevalue; // These variables represents the face value of groups of card with the same value, e.g. Fours
         int sameCardGroupOne = 0, sameCardGroupTwo = 0; // This variable represents the number of cards of the respective groups, i.e. how many of the same face value there are in each group
         Map<String, Integer> handValues; // This variable contains how many cards of each face value the player's hand contains, e.g. how many Kings, Tens etc.
 
