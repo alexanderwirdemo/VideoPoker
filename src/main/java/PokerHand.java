@@ -5,7 +5,10 @@ public class PokerHand {
 
     /**
      * @description This function evaluates the player's poker hand and returns a String representation of the hand (e.g. "Two pairs", "Full house" etc)
-     * @test PokerHandEvaluator: onePair()
+
+     * @test PokerHandEvaluator: onePair(), twoPairs()
+
+
      * @param hand, an Array of five (5) Card objects
      * @return String pokerHand, a String representation of the returned Poker hand
      */
@@ -41,6 +44,10 @@ public class PokerHand {
         // If there is only one group allocated, and it contains exactly one pair, One pair is returned
         if(sameCardGroupOne==2 && sameCardGroupTwo==0){
             return "One pair";
+        }
+        // If both groups are allocated, and both contain exactly two (2) cards each, Two pair is returned
+        if(sameCardGroupOne==2 && sameCardGroupTwo==2){
+            return "Two pairs";
         }
         return "Poker hand";
     }
