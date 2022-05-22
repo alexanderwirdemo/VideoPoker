@@ -1,4 +1,4 @@
-public class Card {
+public class Card implements Comparable<Card>{
     int cardNo; // this variable representents one of the 52 cards and is unique for each card
     Suits suit; // this variable represents the card's suit (HEARTS,CLOVES,DIAMONDS,SPADES)
     int value; // this variable represents the card's value (2-10, Jack, Queen, King, Ace, where 11-Jack, 12-Queen, 13-King and 14-Ace)
@@ -67,5 +67,13 @@ public class Card {
     @Override
     public String toString() {
         return faceValue + " of " +suit;
+    }
+
+    @Override
+    public int compareTo(Card card) {
+        if (this.value != card.getValue()) {
+            return this.value - card.getValue();
+        }
+        return 0;
     }
 }
