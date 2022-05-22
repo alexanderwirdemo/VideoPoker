@@ -46,6 +46,7 @@ public class PokerHand {
         if(sameCardGroupOne==2 && sameCardGroupTwo==2){
             return "Two pairs";
         }
+      
         // If only one group is allocated and it contains exactly three (3) cards, Three of a kind is returned
         if(sameCardGroupOne==3 && sameCardGroupTwo==0){
             return "Three of a kind";
@@ -76,6 +77,7 @@ public class PokerHand {
         handValues.put("QUEEN",0);
         handValues.put("KING",0);
         handValues.put("ACE",0);
+
         // Secondly, the hand is examined card by card, and the value incremented by one (1)
         for(Card card:hand){
             handValues.put(card.getFaceValue(),handValues.get(card.getFaceValue())+1);

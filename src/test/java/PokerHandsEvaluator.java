@@ -1,7 +1,10 @@
 import org.junit.Test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
+import static org.junit.Assert.*;
 
 public class PokerHandsEvaluator {
 
@@ -61,6 +64,7 @@ public class PokerHandsEvaluator {
         assertEquals("Three of a kind", PokerHand.checkHand(threeOfAKindHand));
         threeOfAKindHand[4]=oddCard;
         assertNotEquals("Three of a kind", PokerHand.checkHand(threeOfAKindHand));
+
     }
 
 
