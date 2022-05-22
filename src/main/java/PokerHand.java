@@ -5,7 +5,10 @@ public class PokerHand {
 
     /**
      * @description This function evaluates the player's poker hand and returns a String representation of the hand (e.g. "Two pairs", "Full house" etc)
+
      * @test PokerHandEvaluator: onePair(), twoPairs()
+
+
      * @param hand, an Array of five (5) Card objects
      * @return String pokerHand, a String representation of the returned Poker hand
      */
@@ -72,6 +75,7 @@ public class PokerHand {
         handValues.put("QUEEN",0);
         handValues.put("KING",0);
         handValues.put("ACE",0);
+
         // Secondly, the hand is examined card by card, and the value incremented by one (1)
         for(Card card:hand){
             handValues.put(card.getFaceValue(),handValues.get(card.getFaceValue())+1);
