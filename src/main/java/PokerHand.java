@@ -57,7 +57,32 @@ public class PokerHand {
                 return "Straight";
             }
         }
+        // If there are no groups, the hand could possibly be a flush
+        if(sameCardGroupOne == 0){
+            if(checkFlush(hand)){
+                return "Flush";
+            }
+        }
         return "Poker hand";
+    }
+
+    /**
+     * @description This function evaluates if the player's poker hand is a flush by checking if all cards have the same suit
+     * @test PokerHandEvaluator: flush() (indirectly)
+     * @param hand, an Array of five (5) Card objects
+     * @return boolean (if the hand is a flush - true, otherwise false)
+     */
+    private static boolean checkFlush(Card[] hand) {
+        // Then, the hand is ran through; the card is evaluated vs the following card. The suits must be equal
+        for(int index=0; index<hand.length; index++){
+            // First four cards are evaluated against the following
+            if(index<hand.length-1){
+                if(!hand[index+1].getSuit().equals(hand[index].getSuit())){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
