@@ -2,6 +2,7 @@ import org.junit.Test;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import static org.junit.Assert.*;
 
@@ -44,6 +45,26 @@ public class PokerHandsEvaluator {
         assertEquals("Two pairs", PokerHand.checkHand(twoPairsHand));
         twoPairsHand[3]=oddCard;
         assertNotEquals("Two pairs", PokerHand.checkHand(twoPairsHand));
+    }
+
+    @Test
+    public void threeOfAKind() {
+        Card firstCard = new Card(2, Suits.CLOVES, 2);
+        Card secondCard = new Card(3, Suits.CLOVES, 3);
+        Card thirdCard = new Card(4, Suits.CLOVES, 4);
+        Card forthCard = new Card(16, Suits.DIAMONDS, 3);
+        Card fifthCard = new Card(42, Suits.SPADES, 3);
+        Card oddCard = new Card(25, Suits.DIAMONDS, 12);
+        Card[] threeOfAKindHand = new Card[5];
+        threeOfAKindHand[0]=firstCard;
+        threeOfAKindHand[1]=secondCard;
+        threeOfAKindHand[2]=thirdCard;
+        threeOfAKindHand[3]=forthCard;
+        threeOfAKindHand[4]=fifthCard;
+        assertEquals("Three of a kind", PokerHand.checkHand(threeOfAKindHand));
+        threeOfAKindHand[4]=oddCard;
+        assertNotEquals("Three of a kind", PokerHand.checkHand(threeOfAKindHand));
+
     }
 
 

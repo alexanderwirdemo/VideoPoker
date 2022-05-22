@@ -8,6 +8,9 @@ public class Card {
         this.cardNo = cardNo;
         this.suit = suit;
         this.value = value;
+        if(value==1){
+            this.faceValue="ACE";
+        }
         if(value==2){
             this.faceValue="TWO";
         }
@@ -63,48 +66,6 @@ public class Card {
 
     @Override
     public String toString() {
-        /*
-        String faceValue = "";
-        int value = getValue();
-        if(value==2){
-            faceValue="TWO";
-        }
-        if(value==3){
-            faceValue="THREE";
-        }
-        if(value==4){
-            faceValue="FOUR";
-        }
-        if(value==5){
-            faceValue="FIVE";
-        }
-        if(value==6){
-            faceValue="SIX";
-        }
-        if(value==7){
-            faceValue="SEVEN";
-        }
-        if(value==8){
-            faceValue="EIGHT";
-        }
-        if(value==9){
-            faceValue="NINE";
-        }
-        if(value==10){
-            faceValue="TEN";
-        }
-        if(value==11){
-            faceValue="JACK";
-        }
-        if(value==12){
-            faceValue="QUEEN";
-        }
-        if(value==13){
-            faceValue="KING";
-        }
-        if(value==14){
-            faceValue="ACE";
-        }*/
         return faceValue + " of " +suit;
     }
 }
