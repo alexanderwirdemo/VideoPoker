@@ -143,4 +143,23 @@ public class PokerHandsEvaluator {
         assertNotEquals("Four of a kind", PokerHand.checkHand(fourOfAKindHand));
     }
 
+    @Test
+    public void straightFlush() {
+        Card firstCard = new Card(2, Suits.CLOVES, 2);
+        Card secondCard = new Card(3, Suits.CLOVES, 3);
+        Card thirdCard = new Card(4, Suits.CLOVES, 4);
+        Card forthCard = new Card(5, Suits.CLOVES, 5);
+        Card fifthCard = new Card(6, Suits.CLOVES, 6);
+        Card oddCard = new Card(25, Suits.DIAMONDS, 12);
+        Card[] straightFlushHand = new Card[5];
+        straightFlushHand[0]=firstCard;
+        straightFlushHand[1]=secondCard;
+        straightFlushHand[2]=thirdCard;
+        straightFlushHand[3]=forthCard;
+        straightFlushHand[4]=fifthCard;
+        assertEquals("Straight flush", PokerHand.checkHand(straightFlushHand));
+        straightFlushHand[3]=oddCard;
+        assertNotEquals("Straight flush", PokerHand.checkHand(straightFlushHand));
+    }
+
 }

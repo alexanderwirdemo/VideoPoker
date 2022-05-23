@@ -51,6 +51,12 @@ public class PokerHand {
         if(sameCardGroupOne==3 && sameCardGroupTwo==0){
             return "Three of a kind";
         }
+        // If there are no groups, the hand could possibly be a straight flush
+        if(sameCardGroupOne == 0){
+            if(checkStraight(hand) && checkFlush(hand)){
+                return "Straight flush";
+            }
+        }
         // If there are no groups, the hand could possibly be a straight
         if(sameCardGroupOne == 0){
             if(checkStraight(hand)){
