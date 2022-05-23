@@ -124,4 +124,23 @@ public class PokerHandsEvaluator {
         assertNotEquals("Full house", PokerHand.checkHand(fullHouseHand));
     }
 
+    @Test
+    public void fourOfAKind() {
+        Card firstCard = new Card(3, Suits.CLOVES, 3);
+        Card secondCard = new Card(16, Suits.DIAMONDS, 3);
+        Card thirdCard = new Card(29, Suits.CLOVES, 3);
+        Card forthCard = new Card(42, Suits.SPADES, 3);
+        Card fifthCard = new Card(2, Suits.CLOVES, 2);
+        Card oddCard = new Card(25, Suits.DIAMONDS, 12);
+        Card[] fourOfAKindHand = new Card[5];
+        fourOfAKindHand[0]=firstCard;
+        fourOfAKindHand[1]=secondCard;
+        fourOfAKindHand[2]=thirdCard;
+        fourOfAKindHand[3]=forthCard;
+        fourOfAKindHand[4]=fifthCard;
+        assertEquals("Four of a kind", PokerHand.checkHand(fourOfAKindHand));
+        fourOfAKindHand[3]=oddCard;
+        assertNotEquals("Four of a kind", PokerHand.checkHand(fourOfAKindHand));
+    }
+
 }

@@ -67,7 +67,11 @@ public class PokerHand {
         if(sameCardGroupOne==2 && sameCardGroupTwo==3 || sameCardGroupOne==3 && sameCardGroupTwo==2){
             return "Full house";
         }
-        return "Poker hand";
+        // If there is a group of four (4) cards, the hand is a four of a kind
+        if(sameCardGroupOne==4){
+            return "Four of a kind";
+        }
+        return "Four of a kind";
     }
 
     /**
