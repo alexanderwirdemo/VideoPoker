@@ -105,4 +105,23 @@ public class PokerHandsEvaluator {
         assertNotEquals("Flush", PokerHand.checkHand(flushHand));
     }
 
+    @Test
+    public void fullHouse() {
+        Card firstCard = new Card(2, Suits.CLOVES, 2);
+        Card secondCard = new Card(3, Suits.CLOVES, 3);
+        Card thirdCard = new Card(15, Suits.CLOVES, 2);
+        Card forthCard = new Card(16, Suits.DIAMONDS, 3);
+        Card fifthCard = new Card(42, Suits.SPADES, 3);
+        Card oddCard = new Card(25, Suits.DIAMONDS, 12);
+        Card[] fullHouseHand = new Card[5];
+        fullHouseHand[0]=firstCard;
+        fullHouseHand[1]=secondCard;
+        fullHouseHand[2]=thirdCard;
+        fullHouseHand[3]=forthCard;
+        fullHouseHand[4]=fifthCard;
+        assertEquals("Full house", PokerHand.checkHand(fullHouseHand));
+        fullHouseHand[4]=oddCard;
+        assertNotEquals("Full house", PokerHand.checkHand(fullHouseHand));
+    }
+
 }

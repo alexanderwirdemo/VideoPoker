@@ -63,6 +63,10 @@ public class PokerHand {
                 return "Flush";
             }
         }
+        // If there are groups of three (3) and two (2) cards, the hand is a full house
+        if(sameCardGroupOne==2 && sameCardGroupTwo==3 || sameCardGroupOne==3 && sameCardGroupTwo==2){
+            return "Full house";
+        }
         return "Poker hand";
     }
 
