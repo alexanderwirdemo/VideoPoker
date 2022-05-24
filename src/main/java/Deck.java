@@ -22,24 +22,23 @@ public class Deck {
      * @todo: 2022-05-11 This function will eventually be removed
      */
     public static void main(String[] args){
+        gameEngine();
+    }
+
+    /**
+     * @description API used to run the game whole game
+     * @test NA
+     * @param
+     **/
+    public static void gameEngine() {
         generateDeck();
-        printDeck(unshuffledDeck);
         shuffledDeck = shuffleDeck(unshuffledDeck);
-        System.out.println();
-        printDeck(shuffledDeck);
-         System.out.println();
-         
-         
-         /** Creation of player hand**/
-        System.out.println("*************************************************************");
         playerHand=creationOfPlayerHand();
-	printDeck(playerHand);
-        
-         System.out.println("*************************************************************");
-         switchOfPlayerHand();
-         printDeck(playerHand);
-        
-		
+        printDeck(playerHand);
+        switchOfPlayerHand();
+        printDeck(playerHand);
+
+        /*evaluaion methods */
     }
 
     /**
@@ -81,8 +80,10 @@ public class Deck {
      * @param shuffledDeck an ArrayList of Integers, each representing the Card-object's cardNo
      */
     public static void printDeck(ArrayList<Integer> shuffledDeck){
+        int cardNo = 1;
         for (Integer integer : shuffledDeck) {
-            System.out.print(allCards.get(integer - 1).toString() + "\n");
+            System.out.print("("+cardNo+") "+allCards.get(integer - 1).toString() + "\n");
+            cardNo++;
         }
     }
 
@@ -100,68 +101,83 @@ public class Deck {
         }
         return shuffledDeck;
     }
-	
-    
-    /** 
-     * @author: Rama Bito
+
+
+    /**
      * @description API used to create the player hand randomly through randomizing 5 times and remove the output card from the shuffled deck
      * @return Array list the player hand.
+     * @param
+     * @test NA
      **/
-	public static ArrayList<Integer> creationOfPlayerHand()
-	{
-		ArrayList<Integer> temp=new ArrayList<>();
-		for(int i=0;i<5;i++)
-		{
-			int randomCard = random.nextInt(shuffledDeck.size());
-			temp.add(shuffledDeck.get(randomCard));
-			shuffledDeck.remove(randomCard);
-		}
-		return temp;
-	}
-        
-     /** 
-       * @author: Rama Bito
-       * @description API used to make the user replace the cards he want to replace through inertacting with him
-       **/
-	public static void switchOfPlayerHand()
-	{
-            int hold=0, replace=0, cardNo=0;
-            boolean wrongInput=true;
-            Scanner scan = new Scanner(System.in);
-            ArrayList<Integer> temp=new ArrayList<>();
-            
-            
-            /* the the number of the cards the user want to replace */
-            System.out.println("Enter the number of cards you want to replace: ");
-            while(wrongInput == true)
-            {
-                 try{
-                    replace=scan.nextInt();
-                    if(replace >= 1 && replace <=5)
-                            wrongInput=false;
-                    else
-                             System.out.print("Enter the number of cards you want to replace from 1 to 5 card: ");
-                    }
-                    catch(Exception e){
-                             System.out.print("Wrong Input, Please enter a number between 1 and 5: ");
-                      }
-            
+    public static ArrayList<Integer> creationOfPlayerHand()
+    {
+        ArrayList<Integer> temp=new ArrayList<>();
+        for(int i=0;i<5;i++)
+        {
+            int randomCard = random.nextInt(shuffledDeck.size());
+            temp.add(shuffledDeck.get(randomCard));
+            shuffledDeck.remove(randomCard);
+        }
+        return temp;
+    }
+
+    /**
+     * @description API used to make the user replace the cards he want to replace through inertacting with him
+     * @test NA
+     * @param
+     **/
+    public static void switchOfPlayerHand()
+    {
+        int hold=0, replace=0, cardNo=0;
+        boolean wrongInput=true;
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Integer> temp=new ArrayList<>();
+
+
+        /* the the number of the cards the user want to replace */
+        System.out.println("Enter the number of cards you want to replace or enter 0 if you don't want to replace any card: ");
+        while(wrongInput == true)
+        {
+            try{
+                replace=scan.nextInt();
+                if(replace >= 0 && replace <=5){
+                    wrongInput=false;
+
+                }
+                else
+                    System.out.print("Wrong input enter the number from 0 to 5");
             }
-            
-            /* take the IDs of the cards the user want to replace */
-            for(int i=0;i<replace;i++)
-            { 
-                System.out.println("Enter the card Id you want to replace (1-5): ");
+            catch(Exception e){
+                scan.nextLine();
+                System.out.println("Wrong Input, Please enter a number between 0 and 5: ");
+
+
+
+            }
+
+        }
+
+        /* take the IDs of the cards the user want to replace */
+        for(int i=0;i<replace;i++)
+        {
+            System.out.println("Enter the card Id you want to replace (1-5): ");
+            try{
                 cardNo=scan.nextInt();
                 shuffledDeck.add(playerHand.get(cardNo-1));
                 playerHand.remove(cardNo-1);
                 int randomCard = random.nextInt(shuffledDeck.size());
                 playerHand.add( cardNo-1, shuffledDeck.get(randomCard));
-		shuffledDeck.remove(randomCard);
-                
-                
+                shuffledDeck.remove(randomCard);
             }
-	}
+            catch(Exception e){
+                scan.nextLine();
+                System.out.println("Wrong Input.");
+                i=i-1;
+            }
+
+
+        }
+    }
 	
 		
 		
