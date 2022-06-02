@@ -14,6 +14,7 @@ public class Deck {
     static ArrayList<Integer> shuffledDeck = new ArrayList<>(); // This variable holds the representation of all cards, shuffeled
     static ArrayList<Integer> playerHand=new ArrayList<>(); // RamaBito: Player Hand cards.
     static Random random = new Random();
+    static int playersCredit;
 
     /**
      * @description main function of Deck-class. Creates new deck of cards, prints it, shuffles it and prints it again.
@@ -31,7 +32,20 @@ public class Deck {
      * @param
      **/
     public static void gameEngine() {
+        boolean game = true;
+        playersCredit = 0;
         generateDeck();
+        while(game){
+            printMenu();
+            String option = getOption();
+            if(option.equals("1")){
+                playersCredit += 5;
+                System.out.println("Your credit has increased with 5");
+            }
+            else if(option.equals("2")){
+
+            }
+        }
         shuffledDeck = shuffleDeck(unshuffledDeck);
         playerHand=creationOfPlayerHand();
         printDeck(playerHand);
@@ -39,6 +53,37 @@ public class Deck {
         printDeck(playerHand);
 
         /*evaluaion methods */
+    }
+
+    private static void printMenu() {
+        System.out.println("**** VIDEO POKER ****");
+        System.out.println("Your credits: "+playersCredit);
+        System.out.println("1. Load credits");
+        System.out.println("2. Play poker (costs 5 credits)");
+        System.out.println("3. Exit game");
+    }
+
+    private static String getOption() {
+        Scanner scanner = new Scanner(System.in);
+        boolean correctInput = false;
+        String input = "";
+        while(!correctInput){
+            System.out.print("Enter choice (1, 2 or 3: ");
+            input = scanner.nextLine();
+            if(input.equals("1")){
+                correctInput = true;
+            }
+            else if(input.equals("2")){
+                correctInput = true;
+            }
+            else if(input.equals("3")){
+                correctInput = true;
+            }
+            else{
+                System.out.println("Wrong input");
+            }
+        }
+        return input;
     }
 
     /**
