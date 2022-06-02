@@ -43,19 +43,19 @@ public class Deck {
                 System.out.println("Your credit has increased with 5");
             }
             else if(option.equals("2")){
-
+                playPoker();
+            }
+            else if(option.equals("3")){
+                System.out.println("Thank you for playing Video poker, you won "+playersCredit+" credits! See you next time!");
+                game=false;
             }
         }
-        shuffledDeck = shuffleDeck(unshuffledDeck);
-        playerHand=creationOfPlayerHand();
-        printDeck(playerHand);
-        switchOfPlayerHand();
-        printDeck(playerHand);
-
-        /*evaluaion methods */
     }
 
+
+
     private static void printMenu() {
+        System.out.println();
         System.out.println("**** VIDEO POKER ****");
         System.out.println("Your credits: "+playersCredit);
         System.out.println("1. Load credits");
@@ -84,6 +84,30 @@ public class Deck {
             }
         }
         return input;
+    }
+
+    private static void playPoker() {
+        if(playersCredit>=5){
+            playersCredit-=5;
+            shuffledDeck = shuffleDeck(unshuffledDeck);
+            playerHand=creationOfPlayerHand();
+            printDeck(playerHand);
+            switchOfPlayerHand();
+            printDeck(playerHand);
+            Card[] handToBeEvaluated = new Card[5];
+            int place = 0;
+            for (Integer integer : playerHand) {
+                Card card = allCards.get(integer);
+                handToBeEvaluated[place] = card;
+                place++;
+            }
+            String hand = PokerHand.checkHand(handToBeEvaluated);
+            System.out.println(hand);
+        }
+        else{
+            System.out.println("You do not have enough credits!");
+        }
+
     }
 
     /**
@@ -157,11 +181,9 @@ public class Deck {
     public static ArrayList<Integer> creationOfPlayerHand()
     {
         ArrayList<Integer> temp=new ArrayList<>();
-        for(int i=0;i<5;i++)
-        {
-            int randomCard = random.nextInt(shuffledDeck.size());
-            temp.add(shuffledDeck.get(randomCard));
-            shuffledDeck.remove(randomCard);
+        for(int i=0;i<5;i++) {
+            temp.add(shuffledDeck.get(0));
+            shuffledDeck.remove(0);
         }
         return temp;
     }
