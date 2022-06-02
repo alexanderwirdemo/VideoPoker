@@ -77,7 +77,7 @@ public class PokerHand {
         if(sameCardGroupOne==4){
             return "Four of a kind";
         }
-        return "Four of a kind";
+        return "Nothing";
     }
 
     /**

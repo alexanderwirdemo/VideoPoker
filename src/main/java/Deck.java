@@ -34,7 +34,6 @@ public class Deck {
     public static void gameEngine() {
         boolean game = true;
         playersCredit = 0;
-        generateDeck();
         while(game){
             printMenu();
             String option = getOption();
@@ -89,6 +88,7 @@ public class Deck {
     private static void playPoker() {
         if(playersCredit>=5){
             playersCredit-=5;
+            generateDeck();
             shuffledDeck = shuffleDeck(unshuffledDeck);
             playerHand=creationOfPlayerHand();
             printDeck(playerHand);
@@ -102,12 +102,44 @@ public class Deck {
                 place++;
             }
             String hand = PokerHand.checkHand(handToBeEvaluated);
-            System.out.println(hand);
+            int credits = evaluateCredits(hand);
+            playersCredit+=credits;
+            System.out.println("You got "+hand+" and won "+credits+" credits.");
         }
         else{
             System.out.println("You do not have enough credits!");
         }
 
+    }
+
+    private static int evaluateCredits(String hand) {
+        if(hand.equals("One pair")){
+            return 5;
+        }
+        if(hand.equals("Two pairs")){
+            return 10;
+        }
+        if(hand.equals("Three of a kind")){
+            return 15;
+        }
+        if(hand.equals("Straight")){
+            return 20;
+        }
+        if(hand.equals("Flush")){
+            return 30;
+        }
+        if(hand.equals("Full house")){
+            return 45;
+        }
+        if(hand.equals("Four of a kind")){
+            return 125;
+        }
+        if(hand.equals("Straight flush")){
+            return 250;
+        }
+        else{
+            return 0;
+        }
     }
 
     /**
